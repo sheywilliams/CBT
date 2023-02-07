@@ -2,17 +2,20 @@ import mysql.connector
 mydb = mysql.connector.connect(host = 'localhost', user = 'root', passwd = '1seunwilliams!' , database  = 'project')
 mycursor = mydb.cursor()
 import pandas as pd
+import numpy as np
 
 class user_register:
     def __init__(self, nu):
         self.nu = nu
     def register():
-         one = input('Enter full name\n') 
-         uth = input('Enter desired id number(6)\n')
-         yre = input('Enter password\n') 
+         full_name = input('Enter full name\n') 
+         u_id = np.random.randint(10000, 20000)
+         print('Your unique identification number is >>>')
+         print(u_id)
+         password = input('Enter password\n') 
 
          myquery ='INSERT INTO user_tab(Full_name, user_id, password) VALUES (%s, %s, %s)'
-         val = (one, uth, yre)
+         val = (full_name, u_id, password)
          mycursor.execute(myquery, val)
          mydb.commit()
          print(mycursor.rowcount, 'User added successfully') 
@@ -32,7 +35,7 @@ class user_login:
             user_id = input('enter user id >>>')
             pin = input('enter pin >>>')
             myquery1 = 'SELECT * FROM user_tab WHERE user_id=%s AND Password=%s'
-            if user_id or pin in myquery1:
+            if user_id and pin in myquery1:
                 print('Welcome User') 
                 self.answer()
             else:
@@ -47,7 +50,7 @@ class user_login:
             print('Your account has been blocked')
 
         
-        # user_login.answer()
+#         # user_login.answer()
  
     def answer():
         score = 0
@@ -99,37 +102,37 @@ class user_login:
 #              else:
 #                  print('Invalid user_id...Retry')
         
-#     def question():
-#          score = 0
-#          for x in range(3):
-#              select = int(input('Enter any number from 1 to 10:'))
-#              query_one = "SELECT * FROM question WHERE user_id = %s"
-#              value = (select,)
-#              mycursor.execute(query_one, value)
-#              look = mycursor.fetchone()
-#          try:
-#              if look[0] == select:
-#                  print(look[1])
-#                  print('(a)', look[2])                            
-#                  print('(b)', look[3])                            
-#                  print('(c)', look[4])
+    def question():
+         score = 0
+         for x in range(3):
+             select = int(input('Enter any number from 1 to 10:'))
+             query_one = "SELECT * FROM question WHERE user_id = %s"
+             value = (select,)
+             mycursor.execute(query_one, value)
+             fetch = mycursor.fetchone()
+         try:
+             if fetch[0] == select:
+                 print(fetch[1])
+                 print('(a)', fetch[2])                            
+                 print('(b)', fetch[3])                            
+                 print('(c)', fetch [4])
 
-#                  pick = input('Enter answer')
-#                  query = "SELECT * FROM question WHERE answer = %s"
-#                  value = (pick,)
-#                  mycursor.execute(query,value)
-#                  nm = mycursor.fetchone()
-#                  try:
-#                      if pick in nm:
-#                          score += 1
-#                          print('Correct', 'You have',score, 'point')
+                 pick = input('Enter answer')
+                 query = "SELECT * FROM question WHERE answer = %s"
+                 value = (pick,)
+                 mycursor.execute(query,value)
+                 nm = mycursor.fetchone()
+                 try:
+                     if pick in nm:
+                         score += 1
+                         print('Correct', 'You have',score, 'point')
 
-#                  except TypeError:
-#                      score 
-#                      print('Incorrect', 'you have',score,'point')
+                 except TypeError:
+                     score 
+                     print('Incorrect', 'you have',score,'point')
 
-#          except TypeError:
-#              print('Number not inside...Retry')  
+         except TypeError:
+             print('Number not inside...Retry')  
 
 
 

@@ -1,6 +1,7 @@
 import mysql.connector
 mydb = mysql.connector.connect(host = 'localhost', user = 'root', passwd = '1seunwilliams!' , database  = 'project')
 mycursor = mydb.cursor()
+import numpy as np
 
 # class admin:
 #     def __init__(self):
@@ -90,12 +91,14 @@ class admin_register:
     def __init__(self,nu):
         self.nu=nu
     def register():
-        one = input('Enter full name\n>>>') 
-        uth = input('Enter desired id number(6)\n>>>')
-        yre = input('Enter password\n>>>') 
+        full_name = input('Enter full name\n>>>') 
+        a_id = np.random.randint(1000, 1999)
+        print('Your unique identification number is >>>')
+        print(a_id)
+        password = input('Enter password\n>>>') 
 
         myquery ='INSERT INTO admin_tab(Full_name, admin_id, password) VALUES (%s, %s, %s)'
-        val = (one, uth, yre)
+        val = (full_name, a_id, password)
         mycursor.execute(myquery, val)
         mydb.commit()
         print(mycursor.rowcount, 'Admin added successfully') 
