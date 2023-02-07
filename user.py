@@ -58,21 +58,21 @@ class user_login:
         query2 = "SELECT * FROM question WHERE question = %s"
         opt =(enter,)
         mycursor.execute(query2, opt)
-        xo = mycursor.fetchone()
+        fetch = mycursor.fetchone()
         mydb.commit()
         if 'enter' in query2:
-            print(xo[1])
-            print('(a)', xo[2])
-            print('(b)', xo[3])
-            print('(c)', xo[4])
+            print(fetch.loc[0])
+            print('(a)', fetch[2])
+            print('(b)', fetch[3])
+            print('(c)', fetch[4])
 
-            pick = input('Enter answer')
+            answer = input('Enter answer')
             query = "SELECT * FROM question WHERE answer = %s"
-            val = (pick,)
+            val = (answer,)
             mycursor.execute(query, val)
-            ox = mycursor.fetchone()
+            select = mycursor.fetchone()
             try:
-                if pick in ox:
+                if answer in select:
                     score += 1
                     print('correct')
             except:
@@ -102,37 +102,37 @@ class user_login:
 #              else:
 #                  print('Invalid user_id...Retry')
         
-    def question():
-         score = 0
-         for x in range(3):
-             select = int(input('Enter any number from 1 to 10:'))
-             query_one = "SELECT * FROM question WHERE user_id = %s"
-             value = (select,)
-             mycursor.execute(query_one, value)
-             fetch = mycursor.fetchone()
-         try:
-             if fetch[0] == select:
-                 print(fetch[1])
-                 print('(a)', fetch[2])                            
-                 print('(b)', fetch[3])                            
-                 print('(c)', fetch [4])
+    # def question():
+    #      score = 0
+    #      for x in range(3):
+    #          select = int(input('Enter any number from 1 to 10:'))
+    #          query_one = "SELECT * FROM question WHERE user_id = %s"
+    #          value = (select,)
+    #          mycursor.execute(query_one, value)
+    #          fetch = mycursor.fetchone()
+    #      try:
+    #          if fetch[0] == select:
+    #              print(fetch[1])
+    #              print('(a)', fetch[2])                            
+    #              print('(b)', fetch[3])                            
+    #              print('(c)', fetch [4])
 
-                 pick = input('Enter answer')
-                 query = "SELECT * FROM question WHERE answer = %s"
-                 value = (pick,)
-                 mycursor.execute(query,value)
-                 nm = mycursor.fetchone()
-                 try:
-                     if pick in nm:
-                         score += 1
-                         print('Correct', 'You have',score, 'point')
+    #              pick = input('Enter answer')
+    #              query = "SELECT * FROM question WHERE answer = %s"
+    #              value = (pick,)
+    #              mycursor.execute(query,value)
+    #              nm = mycursor.fetchone()
+    #              try:
+    #                  if pick in nm:
+    #                      score += 1
+    #                      print('Correct', 'You have',score, 'point')
 
-                 except TypeError:
-                     score 
-                     print('Incorrect', 'you have',score,'point')
+    #              except TypeError:
+    #                  score 
+    #                  print('Incorrect', 'you have',score,'point')
 
-         except TypeError:
-             print('Number not inside...Retry')  
+    #      except TypeError:
+    #          print('Number not inside...Retry')  
 
 
 
